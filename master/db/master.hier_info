@@ -1,0 +1,386 @@
+|master
+pcA <= HexDecoder:pcHEX.segA
+sensorB => notB.IN0
+sensorA => noTA.IN0
+clear => inst7.IN0
+clear => T6_8:inst5.clr
+clear => TLC:inst2.clr
+iCLock => clockdiv:inst3.clk
+pcB <= HexDecoder:pcHEX.segB
+pcC <= HexDecoder:pcHEX.segC
+pcD <= HexDecoder:pcHEX.segD
+pcE <= HexDecoder:pcHEX.segE
+pcF <= HexDecoder:pcHEX.segF
+pcG <= HexDecoder:pcHEX.segG
+tlcA <= HexDecoder:tlcHex.segA
+tlcB <= HexDecoder:tlcHex.segB
+tlcC <= HexDecoder:tlcHex.segC
+tlcD <= HexDecoder:tlcHex.segD
+tlcE <= HexDecoder:tlcHex.segE
+tlcF <= HexDecoder:tlcHex.segF
+tlcG <= HexDecoder:tlcHex.segG
+nRL <= TLD:TLD.rL
+sRL <= TLD:TLD.rL
+nAL <= TLD:TLD.aL
+sAL <= TLD:TLD.aL
+nGL <= TLD:TLD.gL
+sGL <= TLD:TLD.gL
+nRM <= TLD:TLD.rM
+sRM <= TLD:TLD.rM
+nGM <= TLD:TLD.gM
+sGM <= TLD:TLD.gM
+nAM <= <GND>
+sAM <= <GND>
+1 <= clockdiv:inst3.1hz
+0_5 <= clockdiv:inst3.0_5hz
+
+
+|master|HexDecoder:pcHEX
+segA <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+D => segA:inst.D
+D => segB:inst5.D
+D => segC:inst6.D
+D => segD:inst7.D
+D => segF:inst9.D
+D => segE:inst8.D
+D => sgeG:inst10.D
+C => segA:inst.C
+C => segB:inst5.C
+C => segC:inst6.C
+C => segD:inst7.C
+C => segF:inst9.C
+C => segE:inst8.C
+C => sgeG:inst10.C
+B => segA:inst.B
+B => segB:inst5.B
+B => segC:inst6.B
+B => segD:inst7.B
+B => segF:inst9.B
+B => segE:inst8.B
+B => sgeG:inst10.B
+A => segA:inst.A
+A => segB:inst5.A
+A => segC:inst6.A
+A => segD:inst7.A
+A => segF:inst9.A
+A => segE:inst8.A
+A => sgeG:inst10.A
+segB <= segB:inst5.segB
+segC <= segC:inst6.segC
+segD <= segD:inst7.segD
+segF <= segF:inst9.segF
+segE <= segE:inst8.segE
+segG <= sgeG:inst10.segF
+
+
+|master|HexDecoder:pcHEX|segA:inst
+segA <= or.DB_MAX_OUTPUT_PORT_TYPE
+A => NOT4.IN0
+A => inst4.IN0
+C => NOT2.IN0
+C => inst7.IN1
+C => inst4.IN1
+D => inst6.IN1
+D => NOT1.IN0
+D => inst.IN2
+B => inst7.IN0
+B => inst5.IN0
+B => NOT3.IN0
+
+
+|master|HexDecoder:pcHEX|segB:inst5
+segB <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+A => inst8.IN0
+A => inst3.IN0
+A => inst5.IN0
+B => inst8.IN1
+B => inst7.IN0
+B => inst2.IN0
+B => inst13.IN1
+D => inst8.IN2
+D => inst7.IN2
+D => inst4.IN3
+D => inst.IN0
+C => inst7.IN1
+C => inst4.IN2
+C => inst13.IN2
+C => inst5.IN2
+
+
+|master|HexDecoder:pcHEX|segC:inst6
+segC <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+A => inst2.IN0
+B => inst3.IN0
+B => inst6.IN0
+B => inst4.IN1
+C => inst5.IN2
+C => inst6.IN1
+C => inst1.IN0
+D => inst5.IN3
+D => inst6.IN2
+D => inst.IN0
+
+
+|master|HexDecoder:pcHEX|segD:inst7
+segD <= or.DB_MAX_OUTPUT_PORT_TYPE
+A => inst3.IN0
+A => inst5.IN0
+A => inst4.IN0
+B => AND4.IN1
+B => inst2.IN0
+B => inst4.IN1
+C => inst1.IN0
+C => inst4.IN2
+C => inst7.IN2
+D => AND4.IN3
+D => inst.IN0
+
+
+|master|HexDecoder:pcHEX|segF:inst9
+segF <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+A => inst7.IN0
+A => inst4.IN0
+A => inst6.IN0
+B => inst2.IN0
+B => inst5.IN0
+B => inst6.IN1
+C => inst7.IN2
+C => inst1.IN0
+D => inst7.IN3
+D => inst.IN0
+
+
+|master|HexDecoder:pcHEX|segE:inst8
+segE <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+B => inst2.IN0
+C => inst5.IN1
+C => inst1.IN0
+D => inst.IN0
+A => inst4.IN0
+A => inst6.IN0
+
+
+|master|HexDecoder:pcHEX|sgeG:inst10
+segF <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+A => inst4.IN0
+A => inst7.IN0
+B => inst3.IN0
+B => inst7.IN1
+C => inst6.IN2
+C => inst2.IN0
+C => inst7.IN2
+D => inst6.IN3
+D => inst.IN0
+
+
+|master|PC:PC
+C <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+clr => inst2.ACLR
+clr => inst1.ACLR
+clr => inst.ACLR
+sensor => inst6.IN0
+B <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+A <= inst.DB_MAX_OUTPUT_PORT_TYPE
+max <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+waiting <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|master|TLC:inst2
+t6 <= and11.DB_MAX_OUTPUT_PORT_TYPE
+clr => reg3.ACLR
+clr => regq1.ACLR
+clr => reg2.ACLR
+clk => reg3.CLK
+clk => regq1.CLK
+clk => reg2.CLK
+fin => and10.IN0
+fin => inst5.IN0
+fin => and2.IN0
+waiting => and10.IN1
+max => inst4.IN0
+max => and12.IN3
+t8 <= inst23.DB_MAX_OUTPUT_PORT_TYPE
+rst <= and14.DB_MAX_OUTPUT_PORT_TYPE
+C <= regq1.DB_MAX_OUTPUT_PORT_TYPE
+B <= reg2.DB_MAX_OUTPUT_PORT_TYPE
+A <= reg3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|master|T6_8:inst5
+fin <= inst.DB_MAX_OUTPUT_PORT_TYPE
+clr => re1.ACLR
+clr => reg2.ACLR
+clk => re1.CLK
+clk => reg2.CLK
+t8 => and5.IN0
+t8 => t8not.IN0
+t6 => t6not.IN0
+t6 => and3.IN1
+
+
+|master|clockdiv:inst3
+1hz <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst.CLK
+0_5hz <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|master|HexDecoder:tlcHex
+segA <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+D => segA:inst.D
+D => segB:inst5.D
+D => segC:inst6.D
+D => segD:inst7.D
+D => segF:inst9.D
+D => segE:inst8.D
+D => sgeG:inst10.D
+C => segA:inst.C
+C => segB:inst5.C
+C => segC:inst6.C
+C => segD:inst7.C
+C => segF:inst9.C
+C => segE:inst8.C
+C => sgeG:inst10.C
+B => segA:inst.B
+B => segB:inst5.B
+B => segC:inst6.B
+B => segD:inst7.B
+B => segF:inst9.B
+B => segE:inst8.B
+B => sgeG:inst10.B
+A => segA:inst.A
+A => segB:inst5.A
+A => segC:inst6.A
+A => segD:inst7.A
+A => segF:inst9.A
+A => segE:inst8.A
+A => sgeG:inst10.A
+segB <= segB:inst5.segB
+segC <= segC:inst6.segC
+segD <= segD:inst7.segD
+segF <= segF:inst9.segF
+segE <= segE:inst8.segE
+segG <= sgeG:inst10.segF
+
+
+|master|HexDecoder:tlcHex|segA:inst
+segA <= or.DB_MAX_OUTPUT_PORT_TYPE
+A => NOT4.IN0
+A => inst4.IN0
+C => NOT2.IN0
+C => inst7.IN1
+C => inst4.IN1
+D => inst6.IN1
+D => NOT1.IN0
+D => inst.IN2
+B => inst7.IN0
+B => inst5.IN0
+B => NOT3.IN0
+
+
+|master|HexDecoder:tlcHex|segB:inst5
+segB <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+A => inst8.IN0
+A => inst3.IN0
+A => inst5.IN0
+B => inst8.IN1
+B => inst7.IN0
+B => inst2.IN0
+B => inst13.IN1
+D => inst8.IN2
+D => inst7.IN2
+D => inst4.IN3
+D => inst.IN0
+C => inst7.IN1
+C => inst4.IN2
+C => inst13.IN2
+C => inst5.IN2
+
+
+|master|HexDecoder:tlcHex|segC:inst6
+segC <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+A => inst2.IN0
+B => inst3.IN0
+B => inst6.IN0
+B => inst4.IN1
+C => inst5.IN2
+C => inst6.IN1
+C => inst1.IN0
+D => inst5.IN3
+D => inst6.IN2
+D => inst.IN0
+
+
+|master|HexDecoder:tlcHex|segD:inst7
+segD <= or.DB_MAX_OUTPUT_PORT_TYPE
+A => inst3.IN0
+A => inst5.IN0
+A => inst4.IN0
+B => AND4.IN1
+B => inst2.IN0
+B => inst4.IN1
+C => inst1.IN0
+C => inst4.IN2
+C => inst7.IN2
+D => AND4.IN3
+D => inst.IN0
+
+
+|master|HexDecoder:tlcHex|segF:inst9
+segF <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+A => inst7.IN0
+A => inst4.IN0
+A => inst6.IN0
+B => inst2.IN0
+B => inst5.IN0
+B => inst6.IN1
+C => inst7.IN2
+C => inst1.IN0
+D => inst7.IN3
+D => inst.IN0
+
+
+|master|HexDecoder:tlcHex|segE:inst8
+segE <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+B => inst2.IN0
+C => inst5.IN1
+C => inst1.IN0
+D => inst.IN0
+A => inst4.IN0
+A => inst6.IN0
+
+
+|master|HexDecoder:tlcHex|sgeG:inst10
+segF <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+A => inst4.IN0
+A => inst7.IN0
+B => inst3.IN0
+B => inst7.IN1
+C => inst6.IN2
+C => inst2.IN0
+C => inst7.IN2
+D => inst6.IN3
+D => inst.IN0
+
+
+|master|TLD:TLD
+rL <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+C => inst5.IN0
+C => inst4.IN1
+C => inst.IN0
+C => inst15.IN3
+B => inst5.IN1
+B => inst4.IN0
+B => inst1.IN0
+B => inst10.IN1
+B => inst14.IN1
+aL <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+A => inst3.IN0
+A => inst2.IN0
+A => inst11.IN0
+A => inst14.IN0
+gL <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+rM <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+gM <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+clk => not.IN0
+
+
